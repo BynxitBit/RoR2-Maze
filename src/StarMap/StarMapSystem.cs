@@ -22,12 +22,8 @@ namespace RoR2Maze.StarMap
 
         private static void ShowOverlay()
         {
-            // TODO: Instantiate the HUD overlay prefab built in Thunderkit.
-            //   1. Load the overlay prefab from the AssetBundle.
-            //   2. Instantiate it under HUD.instance.mainContainer.
-            //   3. Auto-destroy after ShowDuration seconds.
-            //   4. Populate the maze waypoint graph from MazeGenerator.CurrentGraph.
-            Log.Info($"[StarMapSystem] Overlay placeholder – will display for {ShowDuration}s once prefab is available.");
+            StarMapHud.Show(ShowDuration);
+            Log.Info($"[StarMapSystem] Star map shown for {ShowDuration}s.");
         }
     }
 }

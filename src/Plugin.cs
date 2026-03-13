@@ -1,5 +1,4 @@
 using BepInEx;
-using BepInEx.Configuration;
 using R2API;
 using RoR2.ContentManagement;
 using RoR2Maze.GameMode;
@@ -20,23 +19,10 @@ namespace RoR2Maze
 
         public static MazePlugin Instance { get; private set; }
 
-        /// <summary>
-        /// ALPHA: when true, maze systems activate on every stage so you can test
-        /// LanternSystem and StarMapSystem without a Thunderkit-exported scene.
-        /// Set to false (default) before shipping.
-        /// </summary>
-        public static ConfigEntry<bool> DebugMazeMode { get; private set; }
-
         public void Awake()
         {
             Instance = this;
             Log.Init(Logger);
-
-            DebugMazeMode = Config.Bind(
-                section: "Debug",
-                key: "ForceActiveOnAllStages",
-                defaultValue: false,
-                description: "ALPHA: enable maze systems on every vanilla stage for testing.");
 
             Log.Info($"{PluginGUID} v{PluginVersion} loading…");
 

@@ -6,13 +6,10 @@ namespace RoR2Maze.Stages
     internal static class MazeStage
     {
         /// <summary>
-        /// True when the currently-loaded scene is one of our maze SceneDefs,
-        /// OR when the debug override is active (allows testing on vanilla stages).
+        /// ALPHA: always true until a real maze scene exists.
+        /// Replace with SceneDef check once the Thunderkit scene is exported.
         /// </summary>
-        internal static bool IsCurrentScene =>
-            MazePlugin.DebugMazeMode.Value ||
-            (SceneCatalog.currentSceneDef != null &&
-             ContentProvider.StageDefs.Contains(SceneCatalog.currentSceneDef));
+        internal static bool IsCurrentScene => true;
 
         /// <summary>
         /// Returns the SceneDef for the given stage-clear count (one per loop slot).
