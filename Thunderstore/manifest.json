@@ -1,0 +1,11 @@
+{
+    "name": "RoR2Maze",
+    "version_number": "0.1.0",
+    "website_url": "",
+    "description": "A new game mode featuring maze-themed stages with limited vision, puzzles, and traps.",
+    "dependencies": [
+        "bbepis-BepInExPack-5.4.2117",
+        "RiskofThunder-HookGenPatcher-1.2.3",
+        "RiskofThunder-R2API_ContentManagement-1.0.10"
+    ]
+}
