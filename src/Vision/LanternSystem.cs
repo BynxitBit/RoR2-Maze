@@ -1,4 +1,5 @@
 using RoR2;
+using RoR2Maze.Maze;
 using UnityEngine;
 
 namespace RoR2Maze.Vision
@@ -35,6 +36,11 @@ namespace RoR2Maze.Vision
 
             self.gameObject.AddComponent<LanternBehaviour>();
             Log.Info($"[LanternSystem] Lantern attached to {self.name}.");
+
+            // Teleport the local player to the maze start on their first spawn.
+            // Runs only for the local user; skipped on respawns because LanternBehaviour
+            // is already present on any re-spawned body instance check above.
+            MazeBuilder.TeleportToStart(self);
         }
     }
 }

@@ -1,4 +1,6 @@
 using RoR2;
+using RoR2Maze.Maze;
+using UnityEngine.SceneManagement;
 
 namespace RoR2Maze.Stages
 {
@@ -10,6 +12,7 @@ namespace RoR2Maze.Stages
             On.RoR2.SceneCatalog.FindSceneIndex += SceneCatalog_FindSceneIndex;
             On.RoR2.SceneDirector.DefaultPlayerSpawnPointGenerator += SceneDirector_DefaultPlayerSpawnPointGenerator;
             On.RoR2.ClassicStageInfo.Start += ClassicStageInfo_Start;
+            SceneManager.sceneUnloaded += _ => MazeBuilder.Clear();
 
             Log.Info("StageHooks initialized.");
         }
@@ -27,12 +30,12 @@ namespace RoR2Maze.Stages
         {
             if (self is GameMode.MazeRun)
             {
-                // ALPHA: no maze scene yet - fall through to vanilla selection.
-                // TODO: replace when AssetBundle is ready:
-                //   choices.Clear();
-                //   choices.AddChoice(MazeStage.GetDefForClearCount(self.stageClearCount + 1), 1f);
-                //   self.nextStageScene = choices.Evaluate(0f);
-                //   return;
+                // Route MazeRun to the correct per-loop maze SceneDef.
+                var mazeDef = MazeStage.GetDefForClearCount(self.stageClearCount + 1);
+                choices.Clear();
+                choices.AddChoice(mazeDef, 1f);
+                // orig is intentionally not called — we fully control stage selection.
+                return;
             }
 
             orig(self, choices);
